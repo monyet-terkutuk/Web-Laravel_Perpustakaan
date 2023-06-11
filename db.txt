@@ -1,0 +1,34 @@
+Tabel "books":
+
+id: Kolom ini akan menyimpan ID unik untuk setiap buku.
+title: Kolom ini akan menyimpan judul buku.
+author: Kolom ini akan menyimpan nama pengarang buku.
+status: Kolom ini akan menyimpan status buku (misalnya: tersedia, dipinjam, rusak, dll.).
+category_id: Kolom ini akan menyimpan ID kategori buku (merujuk ke tabel "categories").
+image: Kolom ini akan menyimpan lokasi file gambar buku.
+description: Kolom ini akan menyimpan deskripsi singkat tentang buku.
+slug: Kolom ini akan menyimpan versi slug dari judul buku untuk URL.
+
+Tabel "users":
+
+id: Kolom ini akan menyimpan ID unik untuk setiap pengguna.
+name: Kolom ini akan menyimpan nama pengguna.
+email: Kolom ini akan menyimpan alamat email pengguna.
+borrowed_count: Kolom ini akan menyimpan total jumlah buku yang dipinjam oleh pengguna.
+fine_amount: Kolom ini akan menyimpan total jumlah denda yang harus dibayarkan oleh pengguna.
+avatar: Kolom ini akan menyimpan lokasi file avatar pengguna.
+
+Tabel "categories":
+
+id: Kolom ini akan menyimpan ID unik untuk setiap kategori buku.
+name: Kolom ini akan menyimpan nama kategori buku.
+slug: Kolom ini akan menyimpan versi slug dari nama kategori buku untuk URL.
+
+Tabel "transactions":
+
+id: Kolom ini akan menyimpan ID unik untuk setiap transaksi peminjaman atau pengembalian buku.
+user_id: Kolom ini akan menyimpan ID pengguna yang melakukan transaksi (merujuk ke tabel "users").
+book_id: Kolom ini akan menyimpan ID buku yang terlibat dalam transaksi (merujuk ke tabel "books").
+borrow_date: Kolom ini akan menyimpan tanggal peminjaman buku.
+return_date: Kolom ini akan menyimpan tanggal pengembalian buku.
+fine_amount: Kolom ini akan menyimpan jumlah denda yang harus dibayarkan jika buku dikembalikan terlambat.
