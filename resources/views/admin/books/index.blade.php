@@ -45,51 +45,40 @@
                     tabindex="0">
                     <div class="row ">
 
-                        <div class="col-lg-3">
-                            <div class="au-card recent-report shadow">
-                                <div class="chart-note mr-0">
-                                    <span class="dot dot--green "></span>
-                                    <span class="text-success">Tersedia</span>
-                                </div>
-                                <div class="au-card-inner">
-                                    <div class="chart-info inline-block">
-                                        <h3 class="title-2">Judul Buku</h3>
-                                        <img class="mt-3 rounded chart-info__right"
-                                            src="https://source.unsplash.com/70x70/?books" alt="">
+                        @foreach ($books as $item)
+                            <div class="col-lg-3">
+                                <div class="au-card recent-report shadow">
+                                    <div class="chart-note mr-0">
+                                        @if ($item->status == 'Tersedia')
+                                            <span class="dot dot--green "></span>
+                                            <span class="text-success">Tersedia</span>
+                                        @elseif ($item->status == 'Dipinjam')
+                                            <span class="dot dot--red "></span>
+                                            <span class="text-danger">Dipinjam</span>
+                                        @endif
                                     </div>
-                                    <div>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, minus ipsam
-                                            ducimus
-                                            nesciunt molestias impedit quasi nostrum aperiam? Sit suscipit nihil dicta
-                                            nesciunt
-                                            obcaecati esse atque sequi commodi eligendi. Quidem!</p>
+                                    <div class="au-card-inner">
+                                        <div class="chart-info inline-block">
+                                            <h3 class="title-2">{{ $item->title }}</h3>
+                                            @if ($item->image)
+                                                <img class="mt-3 rounded chart-info__right"
+                                                    style="max-height: 90px; max-width:90px"
+                                                    src="/images/{{ $item->image }}" alt="">
+                                            @else
+                                                <img class="mt-3 rounded chart-info__right"
+                                                    src="https://source.unsplash.com/70x70/?{{ $item->category->name }}"
+                                                    alt="">
+                                            @endif
+                                        </div>
+                                        <div>
+                                            <p>{!! $item->description !!}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
 
-                        <div class="col-lg-3">
-                            <div class="au-card recent-report">
-                                <div class="chart-note mr-0">
-                                    <span class="dot dot--red "></span>
-                                    <span class="text-danger">Dipinjam</span>
-                                </div>
-                                <div class="au-card-inner">
-                                    <div class="chart-info inline-block">
-                                        <h3 class="title-2">Judul Buku</h3>
-                                        <img class="mt-3 rounded chart-info__right"
-                                            src="https://source.unsplash.com/70x70/?books" alt="">
-                                    </div>
-                                    <div>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, minus ipsam
-                                            ducimus
-                                            nesciunt molestias impedit quasi nostrum aperiam? Sit suscipit nihil dicta
-                                            nesciunt
-                                            obcaecati esse atque sequi commodi eligendi. Quidem!</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
 
 
 

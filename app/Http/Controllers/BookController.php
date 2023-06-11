@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -13,7 +14,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        return view("admin.books.index");
+        $books = Book::all();
+        return view('admin.books.index')->with('books', $books);
     }
 
     /**
@@ -21,20 +23,8 @@ class BookController extends Controller
      */
     public function create(Request $request)
     {
-        $book = new Book();
-
-        $book->title = $request->input('title');
-        $book->author = $request->input('author');
-        $book->status = 'Tersedia';
-        $book->category_id = $request->input('category_id');
-        $book->image = $request->input('image');
-        $book->description = $request->input('description');
-        $title = $request->input('title');
-        $book->slug = Str::slug($title)::slug($book->title);
-
-        $book->save();
-
-        return redirect('/books');
+        $categories = Category::all();
+        return view("admin.books.create")->with('categories', $categories);
     }
 
 
@@ -44,8 +34,37 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'category_id' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'required',
+        ]);
+
+        $book = new Book();
+
+        $book->title = $request->input('title');
+        $book->author = $request->input('author');
+        $book->status = 'Tersedia';
+        $book->category_id = $request->input('category_id');
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+            $book->image = $imageName;
+        }
+
+        $book->description = $request->input('description');
+        $book->slug = Str::slug($book->title);
+
+        $book->save();
+
+        return redirect('/admin/books/list')->with('success', 'Buku berhasil ditambahkan');
     }
+
+
 
     /**
      * Display the specified resource.

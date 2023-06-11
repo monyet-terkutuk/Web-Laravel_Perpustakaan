@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     protected $fillable = [
-        'title', 'pengarang', 'status', 'iduser', 'tanggal_pijam', 'tanggal_kembali', 'category', 'image', 'deskripsi', 'slug'
+        'title', 'pengarang', 'status', 'iduser', 'tanggal_pijam', 'tanggal_kembali', 'category_id', 'image', 'deskripsi', 'slug'
     ];
 
     public function user()
@@ -17,6 +17,6 @@ class Book extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 }

@@ -21,9 +21,17 @@
                     <a href="chart.html">
                         <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                 </li>
-                <li>
-                    <a href="chart.html">
-                        <i class="fas fa-chart-bar"></i>Data Buku</a>
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        <i class="fas  fa-book"></i>Buku</a>
+                    <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                        <li>
+                            <a href="/admin/books">Koleksi</a>
+                        </li>
+                        <li>
+                            <a href="/admin/books/list">List Data</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="table.html">
@@ -53,9 +61,17 @@
                     <a href="/">
                         <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                 </li>
-                <li>
-                    <a href="chart.html">
-                        <i class="fas fa-chart-bar"></i>Data Buku</a>
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        <i class="fas  fa-book"></i>Buku</a>
+                    <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                        <li>
+                            <a href="/admin/books">Daftar Koleksi</a>
+                        </li>
+                        <li>
+                            <a href="/admin/books/list">List Data</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="table.html">
