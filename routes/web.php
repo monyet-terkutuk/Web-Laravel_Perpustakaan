@@ -2,6 +2,11 @@
 
 use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\AuthController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,5 +22,21 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('admin.index');
 });
+
+Route::get('/admin/books/list', function () {
+    return view('admin.books.list');
+});
+
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::resource('books', BookController::class);
+Route::resource('users', UserController::class);
+Route::resource('categories', CategoryController::class);
+Route::resource('transactions', TransactionController::class);
+
+
 
 Route::resource('/admin/books', BookController::class);
